@@ -19,6 +19,14 @@ public class MoodAnalyser {
 
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     /**
      * Method to check if mood is happy or sad Convert the message to lower case and
      * Check if the string contains happy or sad word in it. Using if else return
@@ -32,9 +40,8 @@ public class MoodAnalyser {
             return "Happy";
         } else if (message.toLowerCase().contains("sad")) {
             return "Sad";
-        } else {
+        }  else {
             return null;
         }
     }
-
 }
