@@ -36,14 +36,18 @@ public class MoodAnalyser {
      * @return - We will return the mood Happy or Sad
      */
     public String analyseMood() {
-        if (message.toLowerCase().contains("happy")) {
-            return "Happy";
-        } else if (message.toLowerCase().contains("sad")) {
-            return "Sad";
-        } else if (message.toLowerCase().contains("any")) {
-            return "Happy";
-        } else {
-            return null;
+        try {
+            if (message.toLowerCase().contains("happy")) {
+                return "Happy";
+            } else if (message.toLowerCase().contains("sad")) {
+                return "Sad";
+            } else if (message.toLowerCase().contains("any")) {
+                return "Happy";
+            } else {
+                return "Any";
+            }
+        } catch (NullPointerException e) {
+            return "Invalid Mood";
         }
     }
 }
