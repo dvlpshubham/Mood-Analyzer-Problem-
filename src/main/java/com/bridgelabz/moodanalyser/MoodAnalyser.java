@@ -8,7 +8,7 @@ public class MoodAnalyser {
      *
      * @param message - String message to be checked by methods.
      */
-    public MoodAnalyser(String message) {
+    public MoodAnalyser(String message) throws MoodAnalyzerException {
         this.message = message;
     }
 
@@ -35,7 +35,7 @@ public class MoodAnalyser {
      * @param message - String message from the main method.
      * @return - We will return the mood Happy or Sad
      */
-    public String analyseMood() {
+    public String analyseMood() throws MoodAnalyzerException {
         try {
             if (message.toLowerCase().contains("happy")) {
                 return "Happy";
@@ -47,7 +47,7 @@ public class MoodAnalyser {
                 return "Any";
             }
         } catch (NullPointerException e) {
-            return "Happy";
+            throw new MoodAnalyzerException("Exception Found");
         }
     }
 }

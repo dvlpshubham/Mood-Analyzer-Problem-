@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
+
 public class MoodAnalyserTest {
     MoodAnalyser moodAnalyser = new MoodAnalyser();
 
@@ -12,7 +13,7 @@ public class MoodAnalyserTest {
      * return sad. Used the assert equals to check if the method output is sad.
      */
     @Test
-    public void givenMessage_WhenSad_ShouldReturnSad() {
+    public void givenMessage_WhenSad_ShouldReturnSad() throws MoodAnalyzerException {
         moodAnalyser.setMessage("I am in Sad Mood");
         String mood = moodAnalyser.analyseMood();
         Assertions.assertEquals("Sad", mood);
@@ -24,26 +25,34 @@ public class MoodAnalyserTest {
      */
 
     @Test
-    public void givenMessage_WhenHappy_ShouldReturnHappy() {
+    public void givenMessage_WhenHappy_ShouldReturnHappy() throws MoodAnalyzerException {
         moodAnalyser.setMessage("I am in Happy Mood");
         String mood = moodAnalyser.analyseMood();
         Assertions.assertEquals("Happy", mood);
     }
 
     @Test
-    public void givenMessage_IsAny_ShouldReturnAny() {
+    public void givenMessage_IsAny_ShouldReturnHappy() throws MoodAnalyzerException {
         moodAnalyser.setMessage("I am in Any Mood");
         String mood = moodAnalyser.analyseMood();
         Assertions.assertEquals("Happy", mood);
     }
+
     /**
      * Method to check if mood is invalid. it should return Invalid Mood assert
      * equals to check if the method output is Invalid Mood
+     *
+     * @throws MoodAnalyzerException - in case of null or empty mood: throws custom
+     *                               mood analyzer exception.
      */
     @Test
-    public void givenMessage_IsInvalid_ShouldReturnHappy() {
-        moodAnalyser.setMessage(null);
-        String mood = moodAnalyser.analyseMood();
-        Assertions.assertEquals("Happy", mood);
+    public void givenMessage_IsInvalid_ShouldReturnHappy() throws MoodAnalyzerException {
+        try {
+            moodAnalyser.setMessage(null);
+            String mood = moodAnalyser.analyseMood();
+            Assertions.assertEquals("Invalid Mood", mood);
+        } catch (MoodAnalyzerException e) {
+            System.out.println("Invalid Mood");
+        }
     }
 }
